@@ -13,6 +13,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       home: Scaffold(
         body: const FoodItemsLoader(),
       ),
@@ -41,11 +42,11 @@ class FoodItemsLoader extends StatelessWidget {
 
         // Handle success
         final items = snapshot.data ?? [];
-        return ListView(
+        return ListView.separated(
           padding: const EdgeInsets.all(16),
-          children: [
-            for (final item in items) FoodItemContainer(item: item),
-          ],
+          itemCount: items.length,
+          itemBuilder: (context, index) => FoodItemContainer(item: items[index]),
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
         );
       },
     );
@@ -60,20 +61,21 @@ class FoodItemContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(item.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Text('Weight: ${item.weight}g'),
-            Text('Servings: ${item.servings}'),
-            Text('Calories: ${item.calories}'),
-          ],
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(item.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          // const SizedBox(height: 8),
+          Text('Weight: ${item.weight}g'),
+          Text('Servings: ${item.servings}'),
+          Text('Calories: ${item.calories}'),
+        ],
       ),
     );
   }
