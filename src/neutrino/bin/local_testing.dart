@@ -1,4 +1,4 @@
-import 'package:neutrino/data/mock_api.dart';
+import 'package:neutrino/data/services/mock_api.dart';
 
 void main() async {
   final items = await mockApi.getFood(count: 6);
