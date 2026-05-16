@@ -22,6 +22,9 @@ class MainApp extends StatelessWidget {
 }
 
 
+/// A widget that loads food items from the mock API and displays them in a list
+/// using the [FoodItemContainer] widget. It handles loading and error states
+/// gracefully.
 class FoodItemsLoader extends StatelessWidget {
   const FoodItemsLoader({super.key});
 
@@ -54,6 +57,7 @@ class FoodItemsLoader extends StatelessWidget {
 }
 
 
+/// A simple widget to display a food item in a styled container.
 class FoodItemContainer extends StatelessWidget {
   final FoodItem item;
 
