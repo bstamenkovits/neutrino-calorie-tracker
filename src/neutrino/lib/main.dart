@@ -31,7 +31,7 @@ class FoodItemsLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<FoodItem>>(
-      future: mockApi.getFood(count: 6),
+      future: mockApi.getFood(count: 10),
       builder: (context, snapshot) {
         // Handle loading
         if (snapshot.connectionState != ConnectionState.done) {
@@ -71,14 +71,40 @@ class FoodItemContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       padding: const EdgeInsets.all(16),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(item.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          // const SizedBox(height: 8),
-          Text('Weight: ${item.weight}g'),
-          Text('Servings: ${item.servings}'),
-          Text('Calories: ${item.calories}'),
+          // Left column with name and servings
+          Expanded( // Make the left column take up remaining space (prevents overflow)
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(item.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 4),
+                Text(
+                  '${item.servingNumber} ${item.servingName}',
+                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+              ],
+            ),
+          ),
+
+          // Right column with calories and weight
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'Calories: ${item.calories}',
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '${item.weight} g',
+                style: const TextStyle(fontSize: 14, color: Colors.black54),
+              ),
+            ],
+          ),
         ],
       ),
     );

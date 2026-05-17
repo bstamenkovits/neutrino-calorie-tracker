@@ -35,7 +35,8 @@ class MockApi {
 
       return FoodItem(
         name: name,
-        servings: servings,
+        servingNumber: servings,
+        servingName: 'portion(s)',
         weight: weight.toDouble(),
         calories: calories,
         meal: meal,
