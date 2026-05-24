@@ -129,7 +129,7 @@ class _AuthPageState extends State<AuthPage> {
                                 child: Text(
                                   'Sign In',
                                   style: TextStyle(
-                                    color: _isSignIn ? Colors.white : Colors.black,
+                                    color: _isSignIn ? Colors.white : Colors.grey[800],
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -144,7 +144,7 @@ class _AuthPageState extends State<AuthPage> {
                                 child: Text(
                                   'Sign Up',
                                   style: TextStyle(
-                                    color: !_isSignIn ? Colors.white : Colors.black,
+                                    color: !_isSignIn ? Colors.white : Colors.grey[800],
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
