@@ -3,6 +3,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:neutrino_calorie_tracker/pages/auth_page.dart';
 import 'package:neutrino_calorie_tracker/pages/home_page.dart';
+import 'package:neutrino_calorie_tracker/pages/test_page.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,7 +73,8 @@ class AuthWrapper extends StatelessWidget {
         
         // route user based on supabase session
         if (session != null) {
-          return const HomePage();
+          // return const HomePage();
+          return const TestPage();
         } else {
           return const AuthPage();
         }

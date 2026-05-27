@@ -7,19 +7,35 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await Supabase.instance.client.auth.signOut();
-            },
-          ),
-        ],
+      backgroundColor: Colors.grey[100],
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            _buildMealContainer('Breakfast'),
+            _buildMealContainer('Lunch'),
+            _buildMealContainer('Dinner'),
+            _buildMealContainer('Snack'),
+          ],
+        ),
       ),
-      body: const Center(
-        child: Text('You are logged in!'),
+    );
+  }
+
+  Widget _buildMealContainer(String title) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.all(24.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(26.0),
+      ),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
